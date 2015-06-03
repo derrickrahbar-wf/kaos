@@ -36,7 +36,8 @@ class NetworkConfig:
             self.target_bw = target_bw
 
     def parse_packet_loss(self, packet_loss):
-        if re.search('[a-zA-Z]', packet_loss) != None or packet_loss > 1:
+        pl = packet_loss.replace('%')
+        if re.search('[a-zA-Z]', packet_loss) != None or float(packet_loss) > 1:
             print "%s is not an acceptable packet loss" % packet_loss
         else:
             self.packet_loss = packet_loss
@@ -45,7 +46,7 @@ class NetworkConfig:
         if distribution == "" or distribution in allowd_distributions:
             self.distribution = distribution
         else:
-            print "%s is not an acceptable distribution"
+            print "%s is not an acceptable distribution" % distribution
             sys.exit()
 
     def build_cmds():
@@ -67,7 +68,7 @@ class NetworkConfig:
 @click.option('--latency')
 @click.option('--target_bw')
 @click.option('--packet_loss')
-@click.option('--distribution')
+@click.option('--distribution', default="")
 def main(device, latency, target_bw, packet_loss, distribution):
     net_conf = NetworkConfig(device, latency, target_bw, packet_loss, distribution)
     net_conf.run_commands()
