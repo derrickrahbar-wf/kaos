@@ -1,6 +1,7 @@
 import click
 import os
 import sys
+import re
 
 allowed_devices = ['eth0', 'eth1', 'eth2']
 allowd_distributions = ['normal', 'pareto, paretonormal']
@@ -26,10 +27,7 @@ class NetworkConfig:
             sys.exit()
 
     def parse_latency(self, latency):
-        if re.search('[a-zA-Z]', latency) != None:
-            print "%s is not an acceptable latency" % latency
-        else:
-            self.latency = latency
+        self.latency = latency
 
     def parse_bw(self, target_bw):
         if re.search('[a-zA-Z]', target_bw) != None:
