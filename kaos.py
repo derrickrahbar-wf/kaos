@@ -51,9 +51,9 @@ class NetworkConfig:
 
     def build_cmds(self):
         if self.latency != "":
-            self.cmds.append(base_delay_cmd%(self.device, self.latency))
+            self.cmds.append(self.base_delay_cmd%(self.device, self.latency))
         if self.packet_loss != "":
-            loss_cmd = (base_loss_cmd%(self.device, self.packet_loss))
+            loss_cmd = (self.base_loss_cmd%(self.device, self.packet_loss))
             if self.distribution != "":
                 loss_cmd += " distribution %s" % self.distribution
             self.cmds.append(loss_cmd)
