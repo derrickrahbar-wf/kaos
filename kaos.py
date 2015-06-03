@@ -49,7 +49,7 @@ class NetworkConfig:
             print "%s is not an acceptable distribution" % distribution
             sys.exit()
 
-    def build_cmds():
+    def build_cmds(self):
         if self.latency != "":
             self.cmds.append(base_delay_cmd%(self.device, self.latency))
         if self.packet_loss != "":
@@ -58,7 +58,7 @@ class NetworkConfig:
                 loss_cmd += " distribution %s" % self.distribution
             self.cmds.append(loss_cmd)
 
-    def run_cmds():
+    def run_cmds(self):
         for cmd in self.cmds:
             os.system(cmd)
 
