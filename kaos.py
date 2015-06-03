@@ -58,7 +58,7 @@ class NetworkConfig:
                 loss_cmd += " distribution %s" % self.distribution
             self.cmds.append(loss_cmd)
 
-    def run_cmds(self):
+    def run_commands(self):
         for cmd in self.cmds:
             os.system(cmd)
 
