@@ -36,7 +36,7 @@ class NetworkConfig:
             self.target_bw = target_bw
 
     def parse_packet_loss(self, packet_loss):
-        pl = packet_loss.replace('%')
+        pl = packet_loss.replace('%', "")
         if re.search('[a-zA-Z]', packet_loss) != None or float(packet_loss) > 1:
             print "%s is not an acceptable packet loss" % packet_loss
         else:
