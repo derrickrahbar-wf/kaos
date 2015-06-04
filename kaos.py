@@ -117,7 +117,7 @@ def main(device, latency, target_bw, packet_loss, distribution,
         os.system('tc qdisc del dev eth1 root')
     net_conf = NetworkConfig(device, latency, target_bw, packet_loss,
                             distribution, corrupt, reorder)
-    # net_conf.run_commands()
+    net_conf.run_commands()
 
 if __name__ == '__main__':
     main()
