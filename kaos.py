@@ -11,7 +11,7 @@ class NetworkConfig:
     base_loss_cmd = 'tc qdisc %s dev %s root netem loss %s'
     base_corrupt_cmd = 'tc qdisc %s dev %s root netem corrupt %s'
     base_reorder_cmd = 'tc qdisc %s dev %s root netem gap %s delay %s'
-    reset_queue = 'tc qdisc del dev eth1 root'
+    reset_queue = 'tc qdisc del dev %s root'
 
     def __init__(self, device, latency, target_bw, packet_loss, 
                  distribution, corrupt, reorder):
@@ -114,7 +114,7 @@ class NetworkConfig:
 def main(device, latency, target_bw, packet_loss, distribution,
          corrupt, reorder, reset):
     if reset == True:
-        os.system('tc qdisc del dev eth1 root')
+        os.system('tc qdisc del dev %s root'%device)
     net_conf = NetworkConfig(device, latency, target_bw, packet_loss,
                             distribution, corrupt, reorder)
     net_conf.run_commands()
