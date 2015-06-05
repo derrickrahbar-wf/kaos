@@ -50,7 +50,7 @@ class NetworkConfig:
 
     def parse_packet_loss(self, packet_loss):
         pl = packet_loss.replace('%', "")
-        if re.search('[a-zA-Z]', packet_loss) != None or float(pl) > 1:
+        if re.search('[a-zA-Z]', packet_loss) != None:
             print "%s is not an acceptable packet loss" % packet_loss
         else:
             self.packet_loss = packet_loss
@@ -66,7 +66,7 @@ class NetworkConfig:
         c = corrupt.replace('%', "")
         if corrupt == "":
             self.corrupt = corrupt
-        elif re.search('[a-zA-Z]', corrupt) != None or float(c) > 1:
+        elif re.search('[a-zA-Z]', corrupt) != None:
             print "%s is not an acceptable corruption" % corrupt
         else:
             self.corrupt = corrupt
